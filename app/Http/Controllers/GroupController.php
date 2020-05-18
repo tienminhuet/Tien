@@ -59,7 +59,6 @@ class GroupController extends Controller
             $this->filter($request, $query);
             $exception = $request->roleF == 1 ? DB::table('users')->where('role', '<>', 1)->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->limit(3)->get() : DB::table('users')->where('role', 1)->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->limit(3)->get();
             $results = json_decode($query->get(), true) != [] ? $query->get() : $exception;
-            $reg->name = $request->name;
             $reg->number_days = $request->dayNum;
             $reg->save();
             foreach (json_decode($results, true) as $rlt) {

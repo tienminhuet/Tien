@@ -15,7 +15,6 @@ class CreateRegistrationGroupsTable extends Migration
     {
         Schema::create('registration_groups', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->default('');
             $table->integer('number_days')->nullable();
             $table->timestamps();
         });

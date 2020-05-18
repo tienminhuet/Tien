@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $data = User::with('registration')->where('registration_id', '=', $user->registration_id)->get();
+        $data = $user->registration_id ? User::with('registration')->where('registration_id', '=', $user->registration_id)->get() : null;
         return view('home', ['data'=>$data]);
     }
 }

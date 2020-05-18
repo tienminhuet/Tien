@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <div class="card">
-                        @if (count($data) == 0)
+                        @if ($data == null)
                             <div class="card-block">
                                 <div class="card-body text">
                                     <div class="card-header">
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>{{$dt->name}}</td>
                                         <td>{{$dt->home_address}}</td>
-                                        <td>{{$dt->registration->name}}</td>
+                                        <td>{{$dt->registration->id}}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -46,18 +46,27 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <div id="map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d251637.95196238213!2d105.6189045!3d9.779349!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1589143252013!5m2!1svi!2s"
-                            width="860" height="610" frameborder="0" style="border:0;" allowfullscreen=""
-                            aria-hidden="false" tabindex="0"></iframe>
-                    </div>
+                    <div id="map"></div>
                 </div>
             </div>
         </div>
     </div>
     @include('forms.general')
 @endsection
+<script>
+    function initMap() {
+        let center = {lat: 21.037468, lng: 105.780793};
+        let map = new google.maps.Map(
+            document.getElementById('map'),
+            {zoom: 12,
+            center: center}
+        )
+        var marker = new google.maps.Marker({position: center, map: map});
+    }
+</script>
+<script async defer
+        src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDZ7vhGB3q3ZC0LXzgSyKutwVmzhtaVANc&callback=initMap">
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -66,7 +75,7 @@
             type: 'PUT',
             data: {_token: CSRF_TOKEN},
             success: function () {
-                console.log('sucess')
+                console.log('success')
             }
         })
     })

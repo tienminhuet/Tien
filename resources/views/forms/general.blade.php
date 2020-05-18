@@ -14,12 +14,6 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>
-                            Tên nhóm
-                        </label>
-                        <input class="form-control" id="name" name="name" required="" type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>
                             Số ngày đi
                         </label>
                         <input class="form-control" id="dayNum" name="dayNum" required="" type="text">
