@@ -18,7 +18,13 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $gData = RegistrationGroup::with('user')->get();
+        if ($user->can('viewAny', RegistrationGroup::class)) {
+            return view('admin.group', ['gData' => $gData]);
+        } else {
+            return redirect('/home');
+        }
     }
 
     /**

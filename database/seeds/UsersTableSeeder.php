@@ -31,5 +31,13 @@ class UsersTableSeeder extends Seeder
                 'smoking' => $dt['smoking']
             ));
         }
+        User::create([
+            'name' => 'Admin',
+            'email' => 'Admin@gmail.com',
+            'password' => Hash::make('12345678'),
+            'gender' => 0,
+            'role' => 0,
+            'super_user' => 1
+        ]);
     }
 }

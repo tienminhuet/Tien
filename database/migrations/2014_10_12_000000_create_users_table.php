@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
@@ -19,16 +21,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('gender');
-            $table->string('occupations');
+            $table->string('occupations')->default('');
             $table->integer('role');
             $table->string('home_address')->nullable(true);
             $table->string('company_address')->nullable(true);
             $table->time('start_time')->nullable(true);
             $table->time('end_time')->nullable(true);
             $table->integer('smoking')->default(0);
+            $table->integer('super_user')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });
+
     }
 
     /**

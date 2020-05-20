@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Yaf\Request\Http;
 
 class UserController extends Controller
@@ -20,7 +21,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user();
+        $uData = User::with('group')->where('id', '<>', Auth::id())->orderBy('group_id', 'asc')->paginate(10);
+        if ($user->can('viewAny', User::class)) {
+            return view('admin.user', ['uData'=>$uData]);
+        }
+        else {
+            return redirect('/home');
+        }
     }
 
     /**

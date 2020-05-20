@@ -31,3 +31,6 @@ Route::get('carDetail/{id}', 'CarDetailController@show');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/user', 'UserController@index');
+Route::get('/admin/group', 'GroupController@index');
