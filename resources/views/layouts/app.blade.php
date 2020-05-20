@@ -6,12 +6,12 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <base href="{{asset('')}}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -33,6 +33,37 @@
             position: unset;
             height: 600px;  /* The height is 400 pixels */
             width: 100%;  /* The width is the width of the web page */
+        }
+        .coordinate {
+            font-size: 1.3em;
+        }
+        .collapse-content {
+            border: 1px solid #000000;
+        }
+        input {
+            border: 1px solid #000!important;
+        }
+        .modal-content {
+            width: 600px;
+        }
+        .route {
+            overflow: auto;
+            height: 300px;
+        }
+        #style-3::-webkit-scrollbar-track
+        {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        #style-3::-webkit-scrollbar
+        {
+            width: 4px;
+            background-color: #F5F5F5;
+        }
+        #style-3::-webkit-scrollbar-thumb
+        {
+            background-color: #343a40;
         }
     </style>
 </head>
@@ -106,6 +137,15 @@
     let url = document.URL.split("/")[3]
     let el = document.getElementById(url);
     el.classList.add("current-tab")
+</script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $('#renterF').on('click', function () {
+            $('.collapse').collapse('hide')
+            $('.collapse-content').find('input:text').val(null)
+        })
+    })
 </script>
 </body>
 </html>

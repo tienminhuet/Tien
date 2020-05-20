@@ -89,7 +89,7 @@
                         <div class="form-group">
                             {!! Form::label('start_time', 'Start Time:', ['class' => 'col-lg-2 control-label']) !!}
                             <div class="col-lg-10">
-                                {!! Form::time('start_time', $value = null, ['class' => 'form-control', 'placeholder' => 'Start time']) !!}
+                                {!! Form::time('start_time', $value = null, ['class' => 'form-control', 'placeholder' => 'Start time', 'min' => '07:00', 'max' => '08:00']) !!}
                             </div>
                             {!! Form::label('end_time', 'End Time:', ['class' => 'col-lg-2 control-label']) !!}
                             <div class="col-lg-10">
@@ -117,3 +117,15 @@
         </div>
     </div>
 @endsection
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#start_time").change(function () {
+            let max = $(this).attr('max');
+            let minutes = $(this).val().split(':')[1]
+            if ($(this).val().split(':')[0] === '08' && Number(minutes) > 0) {
+                $(this).val(max)
+            }
+        });
+    });
+</script>

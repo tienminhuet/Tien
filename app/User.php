@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\CarDetail;
 use App\Models\Coordinate;
 use App\Models\RegistrationGroup;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -44,10 +45,14 @@ class User extends Authenticatable
     }
 
     public function group() {
-        return$this->belongsTo(\App\Models\Group::class, 'group_id', 'id');
+        return $this->belongsTo(\App\Models\Group::class, 'group_id', 'id');
     }
 
     public function registration() {
-        return$this->belongsTo(RegistrationGroup::class, 'registration_id', 'id');
+        return $this->belongsTo(RegistrationGroup::class, 'registration_id', 'id');
+    }
+
+    public function carDetail() {
+        return $this->hasOne(CarDetail::class, 'user_id', 'id');
     }
 }

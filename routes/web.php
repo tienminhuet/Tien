@@ -26,6 +26,8 @@ Route::post('regGroup', 'GroupController@makeRegGroup');
 Route::get('profile', 'ProfileController@index')->name('profile');
 Route::put('profile', 'ProfileController@store');
 
+Route::get('carDetail/{id}', 'CarDetailController@show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

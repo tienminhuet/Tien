@@ -4,7 +4,7 @@
         "occupations": "Gia sư",
         "role": 0,
         "home_address": "243 Phố Mai Dịch, Mai Dịch, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "07:00",
+        "start_time": "07:15",
         "smoking":0
     },
     {
@@ -28,7 +28,7 @@
         "occupations": "Lái xe",
         "role": 1,
         "home_address": "Ngõ 51 Trần Đăng Ninh, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "09:00",
+        "start_time": "07:35",
         "smoking": 0
     },
     {
@@ -44,7 +44,7 @@
         "occupations": "Gia sư",
         "role": 0,
         "home_address": "Ngõ 132, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "08:30",
+        "start_time": "07:29",
         "smoking": 0
     },
     {
@@ -52,7 +52,7 @@
         "occupations": "Công nhân",
         "role": 1,
         "home_address": "Toà nhà N07-B3, Phố Thành Thái, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "08:45",
+        "start_time": "07:00",
         "smoking": 1
     },
     {
@@ -68,7 +68,7 @@
         "occupations": "Tài chính",
         "role": 0,
         "home_address": "Phố Thọ Tháp, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "09:10",
+        "start_time": "07:25",
         "smoking": 0
     },
     {
@@ -92,7 +92,7 @@
         "occupations": "Công nhân",
         "role": 0,
         "home_address": "106 Hoàng Quốc Việt, Nghĩa Đô, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "08:10",
+        "start_time": "07:55",
         "smoking": 1
     },
     {
@@ -100,7 +100,7 @@
         "occupations": "Nông dân",
         "role": 0,
         "home_address": "D10, Làng Quốc Tế Thăng Long, Trần Đăng Ninh, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "08:50",
+        "start_time": "07:21",
         "smoking": 0
     },
     {
@@ -108,7 +108,7 @@
         "occupations": "Chủ công ty",
         "role": 1,
         "home_address": "385 Hoàng Quốc Việt, Nghĩa Tân, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "09:00",
+        "start_time": "07:00",
         "smoking": 0
     },
     {
@@ -116,7 +116,7 @@
         "occupations": "Sale",
         "role": 0,
         "home_address": "2 Trần Quốc Hoàn, Dịch Vọng Hậu, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "09:10",
+        "start_time": "07:15",
         "smoking": 0
     },
     {
@@ -124,7 +124,7 @@
         "occupations": "Thoát nước",
         "role": 1,
         "home_address": "72 Trần Đăng Ninh, Dịch Vọng, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "09:20",
+        "start_time": "07:00",
         "smoking": 0
     },
     {
@@ -132,7 +132,7 @@
         "occupations": "Sale",
         "role": 0,
         "home_address": "25, Trần Bình, Phường Mai Dịch, Quận Cầu Giấy, Thành Phố Hà Nội, Mỹ Đình, Hà Nội 100000, Vietnam",
-        "start_time": "07:00",
+        "start_time": "07:16",
         "smoking": 0
     },
     {
@@ -140,7 +140,7 @@
         "occupations": "Công nhân",
         "role": 0,
         "home_address": "Dương Quảng Hàm, Quan Hoa, Cầu Giấy, Hà Nội, Vietnam",
-        "start_time": "08:20",
+        "start_time": "07:22",
         "smoking": 0
     },
     {
@@ -148,7 +148,7 @@
         "occupations": "Thất nghiệp",
         "role": 0,
         "home_address": "Mai Dịch, Cầu Giấy, Hanoi, Vietnam",
-        "start_time": "08:10",
+        "start_time": "07:27",
         "smoking": 0
     },
     {
@@ -156,7 +156,7 @@
         "occupations": "Công nhân",
         "role": 0,
         "home_address": "Nghĩa Tân, Cầu Giấy, Hanoi, Vietnam",
-        "start_time": "09:05",
+        "start_time": "07:26",
         "smoking": 0
     }
 ]

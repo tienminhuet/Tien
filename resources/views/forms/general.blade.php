@@ -29,10 +29,44 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="roleF" id="driverF" value="1">
+                            <input class="form-check-input" type="radio" name="roleF" id="driverF" value="1"
+                                   data-toggle="collapse" href="#driverCollapse" role="button"
+                                   aria-expanded="false" aria-controls="driverCollapse">
                             <label class="form-check-label" for="driverF">
                                 Người lái
                             </label>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="collapse multi-collapse" id="driverCollapse">
+                                    <div class="card card-body collapse-content">
+                                        <div class="form-group">
+                                            <label>
+                                                Biển số xe
+                                            </label>
+                                            <input class="form-control" id="carLicense" name="license" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Số chỗ
+                                            </label>
+                                            <input class="form-control" id="carSeat" name="seat" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Màu xe
+                                            </label>
+                                            <input class="form-control" id="carColor" name="color" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Hãng xe
+                                            </label>
+                                            <input class="form-control" id="carBranch" name="branch" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,4 +106,6 @@
         </div>
     </div>
 </div>
+
+
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRegistrationGroupsTable extends Migration
+class AddBranchIntoCarDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateRegistrationGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('registration_groups', function (Blueprint $table) {
-            $table->id();
-            $table->integer('driver_id');
-            $table->integer('number_days')->nullable();
-            $table->timestamps();
+        Schema::table('car_details', function (Blueprint $table) {
+            $table->string('branch')->default('');
         });
     }
 
@@ -28,6 +25,8 @@ class CreateRegistrationGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('registration_groups');
+        Schema::table('car_details', function (Blueprint $table) {
+            //
+        });
     }
 }
