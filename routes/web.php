@@ -14,23 +14,24 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::middleware('auth')->group(function () {
+    Route::post('userRegister', 'UserController@store');
+    Route::get('logout', 'UserController@logout')->name('logout');
+    Route::put('initGroup', 'GroupController@store');
+    Route::post('leaveGroup', 'GroupController@leave');
 
+    Route::post('regGroup', 'GroupController@makeRegGroup');
+
+    Route::get('profile', 'ProfileController@index')->name('profile');
+    Route::put('profile', 'ProfileController@store');
+
+    Route::get('carDetail/{id}', 'CarDetailController@show');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/admin/user', 'UserController@index');
+    Route::get('/admin/group', 'GroupController@index');
 });
-
-Route::post('userRegister', 'UserController@store');
-Route::get('logout', 'UserController@logout')->name('logout');
-Route::put('initGroup', 'GroupController@store');
-
-Route::post('regGroup', 'GroupController@makeRegGroup');
-
-Route::get('profile', 'ProfileController@index')->name('profile');
-Route::put('profile', 'ProfileController@store');
-
-Route::get('carDetail/{id}', 'CarDetailController@show');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/user', 'UserController@index');
-Route::get('/admin/group', 'GroupController@index');

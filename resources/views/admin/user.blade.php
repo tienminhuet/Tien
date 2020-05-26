@@ -14,6 +14,7 @@
                         <table class="table table-bordered table-dark">
                             <thead>
                             <tr>
+                                <td scope="col">Id</td>
                                 <td scope="col">Tên</td>
                                 <td scope="col">Địa chỉ email</td>
                                 <td scope="col">Giới tính</td>
@@ -28,6 +29,7 @@
                             <tbody>
                             @foreach($uData as $udt)
                                 <tr>
+                                    <td>{{$udt->id}}</td>
                                     <td>{{$udt->name}}</td>
                                     <td>{{$udt->email}}</td>
                                     <td>{{$udt->gender == 0 ? 'Nam' : 'Nữ'}}</td>

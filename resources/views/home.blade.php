@@ -38,7 +38,10 @@
                                         <td>{{$dt->name}}</td>
                                         <td>{{$dt->home_address}}</td>
                                         <td>{{$dt->registration->id}}</td>
-                                        <td>@if($dt->id == $driver) X @endif</td>
+                                        <td>@if($dt->id == $driver)
+                                                <button class="btn btn-primary" data-toggle="modal"
+                                                        data-target="#carDetail"><i class="fa fa-info"></i>
+                                                </button> @endif</td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -64,19 +67,25 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <button class="btn btn-primary" data-toggle="modal" data-target="#carDetail">Thông tin xe
-                            </button>
                         @endif
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div id="map"></div>
+                    <br>
+                    @if ($data != null)
+                        <button class="btn btn-danger" id="btnLeaveGroup" data-toggle="modal" data-target="#leaveGroup">
+                            Rời
+                            nhóm
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     @include('forms.general')
     @include('forms.carDetail')
+    @include('forms.leaveGroup')
 @endsection
 <script>
     const arr = [];
@@ -88,6 +97,7 @@
 
     function initMap() {
         let coordinate = JSON.parse('{!! $coordinate !!}');
+        console.log(coordinate)
         const infowindow = new google.maps.InfoWindow();
         getCoordinate(coordinate)
         let center = {lat: 21.037468, lng: 105.780793};
@@ -122,6 +132,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const dt = '{!! $data !!}' ? JSON.parse('{!! $data !!}') : '';
         const driverId = dt ? dt[0]['registration']['driver_id'] : '';
+        const id = '{!! Auth::id() !!}'
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: 'initGroup',
@@ -131,6 +142,18 @@
                 console.log('success')
             }
         })
+        $.ajax({
+            url: 'carDetail/' + id,
+            type: 'GET',
+            success: function (res) {
+                if (res !== '') {
+                    $('#carLicense').val(res['license'])
+                    $('#carSeat').val(res['seat'])
+                    $('#carColor').val(res['color'])
+                    $('#carBranch').val(res['branch'])
+                }
+            }
+        });
         if (driverId !== '') {
             $.ajax({
                 url: 'carDetail/' + driverId,
@@ -147,6 +170,22 @@
                 }
             })
         }
+        $('#btn-delete').click(function () {
+            $.ajax({
+                    url: 'leaveGroup',
+                    type: 'POST',
+                    data: {_token: CSRF_TOKEN},
+                    success: function (res) {
+                        if (res) {
+                            window.location.reload()
+                        }
+                    },
+                    error: function () {
+
+                    }
+                }
+            )
+        })
     })
 </script>
 

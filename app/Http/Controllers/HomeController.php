@@ -37,7 +37,7 @@ class HomeController extends Controller
                 array_push($id, $dt->id);
             }
         }
-        $coordinate = Coordinate::with('user')->whereIn('id', $id)->get();
+        $coordinate = Coordinate::with('user')->whereIn('user_id', $id)->get();
         return view('home', ['data'=>$data, 'coordinate'=>$coordinate, 'driver'=>$driver_id, 'dData'=>$dData]);
     }
 }

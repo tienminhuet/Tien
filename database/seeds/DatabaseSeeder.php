@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CarDetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,5 +15,6 @@ class DatabaseSeeder extends Seeder
          $this->call(UsersTableSeeder::class);
          $this->call(CoordinateSeeder::class);
          $this->call(GroupTableSeeder::class);
+         $this->call(CarDetailTableSeeder::class);
     }
 }
