@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +12,12 @@ class ProfileController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object
      */
     public function index()
     {
-        $user = Auth::user();
-        return view('profile.index', ['user'=>$user]);
+        $user = User::with('carDetail')->where('id', Auth::id())->first();
+        return $user;
     }
 
     /**

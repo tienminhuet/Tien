@@ -54,6 +54,10 @@
             width: 600px;
         }
 
+        .modal-selectRole {
+            background-color: #fff;
+        }
+
         .route {
             overflow: auto;
             height: 300px;
@@ -72,6 +76,24 @@
         #style-3::-webkit-scrollbar-thumb {
             background-color: #343a40;
         }
+
+        .float-select {
+            width: 18rem;
+            margin-left: 0.5rem;
+            margin-top: 15px;
+            cursor: pointer;
+            pointer-events: auto;
+            border: 1px solid #000;
+            text-align: center;
+            -webkit-transition: margin 0.5s ease-out;
+            -moz-transition: margin 0.5s ease-out;
+            -o-transition: margin 0.5s ease-out;
+        }
+
+        #carTitle {
+            padding-left: 15px;
+        }
+
     </style>
 </head>
 <body>

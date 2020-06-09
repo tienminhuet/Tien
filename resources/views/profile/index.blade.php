@@ -47,7 +47,40 @@
                                 </div>
                                 <div class="radio">
                                     {!! Form::label('driver', 'Driver') !!}
-                                    {!! Form::radio('role', '1', $user->role == 1 ? true : false, ['id' => 'driver']) !!}
+                                    {!! Form::radio('role', '1', $user->role == 1 ? true : false, ['id' => 'driver', 'data-toggle' => 'collapse', 'data-target' => '#driverCollapse2', 'role' => 'button', 'aria-expanded' => 'true', 'aria-controls' => 'driverCollapse2']) !!}
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="collapse multi-collapse" id="driverCollapse2">
+                                            <div class="card card-body">
+                                                <div class="form-group">
+                                                    <label>
+                                                        Biển số xe
+                                                    </label>
+                                                    <input class="form-control" id="cLicense" name="license"
+                                                           type="text">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        Số chỗ
+                                                    </label>
+                                                    <input class="form-control" id="cSeat" name="seat" type="text">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        Màu xe
+                                                    </label>
+                                                    <input class="form-control" id="cColor" name="color" type="text">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>
+                                                        Hãng xe
+                                                    </label>
+                                                    <input class="form-control" id="cBranch" name="branch" type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,3 +147,9 @@
         </div>
     </div>
 @endsection
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let user = JSON.parse('{!! $user !!}');
+        console.log(user['car_detail'])
+    })
+</script>
