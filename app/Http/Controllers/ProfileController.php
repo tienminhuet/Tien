@@ -16,8 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::with('carDetail')->where('id', Auth::id())->first();
-        return $user;
+        $user = User::with('carDetail')->with('registration')->where('id', Auth::id())->first();
+        return view('profile.index', ['user' => $user]);
     }
 
     /**

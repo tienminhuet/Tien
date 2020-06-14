@@ -8,6 +8,11 @@
                     <h3 class="text-themecolor">Trang chủ</h3>
                 </div>
             </div>
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{session('error')}}
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-5 col-md-5">
                     <div class="card">
@@ -23,7 +28,7 @@
                                 </div>
                             </div>
                         @else
-                            <table class="table table-bordered table-dark">
+                            <table class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th scope="col">Tên</th>
@@ -47,21 +52,28 @@
                                 </tbody>
                             </table>
                             <div class="route" id="style-3">
-                                <table class="table table-bordered table-dark">
+                                <table class="table table-striped table-bordered">
                                     <thead>
                                     <tr>
-                                        <th>Lộ trình</th>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên</th>
+                                        <th scope="col">Giờ đi</th>
+                                        <th scope="col">Địa điểm</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Lái xe {{$dData[0]['name']}} khởi hành lúc {{$dData[0]['start_time']}}
-                                            tại {{$dData[0]['home_address']}}</td>
+                                        <td>1</td>
+                                        <td>Lái xe {{ $dData[0]['name'] }}</td>
+                                        <td>Trong khoảng {{ explode(':', $dData[0]['start_time'])[0] . ':'. explode(':', $dData[0]['start_time'])[1] }} - {{ explode(':', $dData[0]['end_time'])[0] . ':'. explode(':', $dData[0]['end_time'])[1] }}</td>
+                                        <td>{{$dData[0]['home_address']}}</td>
                                     </tr>
-                                    @for($i=1; $i<count($dData); $i++)
+                                    @for($i=2; $i<count($dData); $i++)
                                         <tr>
-                                            <td>Đón {{$dData[$i]['name']}} lúc {{$dData[$i]['start_time']}}
-                                                tại {{$dData[$i]['home_address']}}</td>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $dData[$i]['name'] }}</td>
+                                            <td>Trong khoảng {{ explode(':', $dData[$i]['start_time'])[0] . ':'. explode(':', $dData[$i]['start_time'])[1] }} - {{ explode(':', $dData[$i]['end_time'])[0] . ':'. explode(':', $dData[$i]['end_time'])[1] }}</td>
+                                            <td>{{$dData[$i]['home_address']}}</td>
                                         </tr>
                                     @endfor
                                     </tbody>
@@ -133,6 +145,9 @@
         const dt = '{!! $data !!}' ? JSON.parse('{!! $data !!}') : '';
         const driverId = dt ? dt[0]['registration']['driver_id'] : '';
         const id = '{!! Auth::id() !!}'
+        const user = JSON.parse('{!! Auth::user() !!}')
+        $('#startTime').val(user['start_time'])
+        $('#endTime').val(user['end_time'])
         let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
             url: 'initGroup',
@@ -154,6 +169,46 @@
                 }
             }
         });
+
+        $("#startTime").change(function () {
+            let max = $(this).attr('max');
+            let minutes = $(this).val().split(':')[1]
+            if ($(this).val().split(':')[0] === '08' && Number(minutes) > 0) {
+                $(this).val(max)
+            }
+        });
+
+        $("#endTime").change(function () {
+            let max = $(this).attr('max');
+            let minutes = $(this).val().split(':')[1]
+            if ($('#roleState').val() == 1) {
+                if (Number(minutes) > 15) {
+                    $(this).val(max)
+                }
+            } else {
+                if ($(this).val().split(':')[0] === '08' && Number(minutes) > 0) {
+                    $(this).val(max)
+                }
+            }
+        });
+
+        $("#driverF").on('click', function () {
+            let time = $("#endTime").val()
+            $("#endTime").attr('max', '07:15')
+            $('#roleState').val(1)
+            if (time.split(':')[0] === '07' && Number(time.split(':')[1] <= 15)) {
+                $('#endTime').val(time)
+            } else {
+                $("#endTime").val('')
+            }
+        })
+
+        $('#renterF').on('click', function () {
+            $('.collapse').collapse('hide')
+            $('#roleState').val(0)
+            $("#endTime").attr('max', '08:00')
+        })
+
         if (driverId !== '') {
             $.ajax({
                 url: 'carDetail/' + driverId,

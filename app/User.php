@@ -37,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
     ];
 
     public function coordinate() {
@@ -55,4 +55,5 @@ class User extends Authenticatable
     public function carDetail() {
         return $this->hasOne(CarDetail::class, 'user_id', 'id');
     }
+
 }

@@ -70,15 +70,16 @@
                             </div>
                         </div>
                         <br>
-
+                        <h5 id="timeTitle">Thời gian đi</h5>
                         <div class="form-group">
-                            {!! Form::label('start_time', 'Thời gian đi làm:', ['class' => 'col-lg-2 control-label']) !!}
+                            {!! Form::label('start_time', 'Từ:', ['class' => 'col-lg-2 control-label']) !!}
                             <div class="col-lg-10">
-                                {!! Form::time('start_time', $value = null, ['class' => 'form-control', 'placeholder' => 'Start time', 'min' => '07:00', 'max' => '08:00']) !!}
+                                {!! Form::time('start_time', $value = null, ['class' => 'form-control', 'min' => '07:00', 'max' => '08:00']) !!}
                             </div>
-                            {!! Form::label('end_time', 'Thời gian về:', ['class' => 'col-lg-2 control-label']) !!}
+                            <br>
+                            {!! Form::label('end_time', 'Đến:', ['class' => 'col-lg-2 control-label']) !!}
                             <div class="col-lg-10">
-                                {!! Form::time('end_time', $value = null, ['class' => 'form-control', 'placeholder' => 'End time']) !!}
+                                {!! Form::time('end_time', $value = null, ['class' => 'form-control', 'min' => '07:00']) !!}
                             </div>
                         </div>
                         <br>
@@ -148,11 +149,13 @@
         $('body').on('click', '#passenger', function () {
             $('#selectRole').modal('hide')
             $('#role').val(0)
+            $('#end_time').attr('max', '08:00')
         })
 
         $('body').on('click', '#driver', function () {
             $('#selectRole').modal('hide')
             $('#role').val(1)
+            $('#end_time').attr('max', '07:15')
             $('#carTitle').removeAttr('hidden')
             $('#cLicense').parent().parent().removeAttr('hidden');
             $('#cSeat').parent().parent().removeAttr('hidden');
@@ -161,6 +164,13 @@
         })
 
         $("#start_time").change(function () {
+            let max = $(this).attr('max');
+            let minutes = $(this).val().split(':')[1]
+            if ($(this).val().split(':')[0] === '08' && Number(minutes) > 0) {
+                $(this).val(max)
+            }
+        });
+        $("#end_time").change(function () {
             let max = $(this).attr('max');
             let minutes = $(this).val().split(':')[1]
             if ($(this).val().split(':')[0] === '08' && Number(minutes) > 0) {

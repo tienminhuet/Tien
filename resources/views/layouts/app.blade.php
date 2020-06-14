@@ -18,9 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
     <style>
         .current-tab {
             background-color: #4aa0e6;
@@ -94,15 +94,18 @@
             padding-left: 15px;
         }
 
+        #timeTitle {
+            padding-left: 15px;
+        }
     </style>
 </head>
 <body>
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         @if (Auth::user() && Auth::user()->super_user != 1)
-{{--            <a class="navbar-brand" href="{{ url('/home') }}">--}}
-{{--                {{ config('app.name', 'Laravel') }}--}}
-{{--            </a>--}}
+            {{--            <a class="navbar-brand" href="{{ url('/home') }}">--}}
+            {{--                {{ config('app.name', 'Laravel') }}--}}
+            {{--            </a>--}}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">
@@ -172,19 +175,25 @@
         @yield('content')
     </main>
 </div>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+    $j(document).ready(function() {
+        $j('#dateRange').daterangepicker({
+            locale: {
+                format: 'DD/MM/Y'
+            }
+        })
+    })
+</script>
 <script>
     let url = document.URL.split("/")[3]
     let tab = url.includes('admin') ? document.URL.split("/")[4] + 'List' : url
     let el = document.getElementById(tab);
     el.classList.add("current-tab")
-</script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js" type="text/javascript"></script>
-<script>
-    $(document).ready(function () {
-        $('#renterF').on('click', function () {
-            $('.collapse').collapse('hide')
-        })
-    })
 </script>
 </body>
 </html>

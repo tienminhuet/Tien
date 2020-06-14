@@ -28,6 +28,7 @@ class UsersTableSeeder extends Seeder
                 'role' => $dt['role'],
                 'home_address' => $dt['home_address'],
                 'start_time' => $dt['start_time'],
+                'end_time' => $dt['end_time'],
                 'smoking' => $dt['smoking']
             ));
         }

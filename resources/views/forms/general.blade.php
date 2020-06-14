@@ -16,7 +16,21 @@
                         <label>
                             Số ngày đi
                         </label>
-                        <input class="form-control" id="dayNum" name="dayNum" required="" type="text">
+                        <input class="form-control" id="dateRange" name="dayNum" required="" type="text">
+                    </div>
+                    <br>
+                    <h5>Thời gian đi</h5>
+                    <div class="form-group">
+                        <label>
+                            Từ
+                        </label>
+                        <input class="form-control" id="startTime" name="startTimeF" required="" type="time" min="07:00" max="08:00">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            Đến
+                        </label>
+                        <input class="form-control" id="endTime" name="endTimeF" required="" type="time" min="07:00" max="08:00">
                     </div>
                     <div class="form-group">
                         <label>
@@ -100,7 +114,7 @@
                     <button class="btn btn-primary" id="btn-add" type="submit" value="add">
                         Tìm người đi chung
                     </button>
-                    </input>
+                    <input type="hidden" value="" id="roleState">
                 </div>
             </form>
         </div>

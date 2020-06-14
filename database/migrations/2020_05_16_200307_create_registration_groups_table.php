@@ -16,7 +16,8 @@ class CreateRegistrationGroupsTable extends Migration
         Schema::create('registration_groups', function (Blueprint $table) {
             $table->id();
             $table->integer('driver_id');
-            $table->integer('number_days')->nullable();
+            $table->date('start_day')->nullable();
+            $table->date('end_day')->nullable();
             $table->timestamps();
         });
     }

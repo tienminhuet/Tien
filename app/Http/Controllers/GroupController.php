@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CarDetail;
 use App\Models\RegistrationGroup;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -80,15 +81,21 @@ class GroupController extends Controller
                 $q = $query->limit($request->seat - 1)->get();
                 $excep = DB::table('users')->inRandomOrder()->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->where('registration_id', null)->where('group_id', '<>', null)->limit($request->seat - 1)->get();
             } else {
-                $ex_driver = DB::table('users')->inRandomOrder()->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->where('registration_id', null)->where('group_id', '<>', null)->where('role', '=', 1)->limit(2);
+                $ex_driver = DB::table('users')->inRandomOrder()->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->where('registration_id', null)->where('group_id', '<>', null)->where('role', '=', 1)->where('end_time', '<=', $request->endTimeF)->limit(2);
                 $ex_pass = DB::table('users')->inRandomOrder()->where('gender', $request->genderF)->where('smoking', '<>', 1)->where('id', '<>', Auth::id())->where('registration_id', null)->where('group_id', '<>', null)->where('role', '<>', 1)->limit(3);
                 $excep = $ex_driver->get()->merge($ex_pass->get());
                 $q_driver = json_decode($q_role) == [] ? $ex_driver->get() : null;
                 $q = $query->limit(4)->get()->merge($q_driver);
             }
-
             $results = json_decode($query->get(), true) != [] ? $q : $excep;
-            $reg->number_days = $request->dayNum;
+//            dd($results);
+            if (json_decode($results) == []) {
+                return redirect('/home')->with('error', 'Không tìm được nhóm theo yêu cầu! Bạn có thể chỉnh lại yêu cầu và thử lại');
+            }
+            $start = explode(' -', $request->dayNum)[0];
+            $end = explode('- ', $request->dayNum)[1];
+            $reg->start_day = Carbon::createFromFormat('d/m/Y',$start)->format('Y-m-d');
+            $reg->end_day = Carbon::createFromFormat('d/m/Y',$end)->format('Y-m-d');
             if ($request->roleF == 1) {
                 $driver_id = Auth::id();
             } else {
@@ -109,6 +116,7 @@ class GroupController extends Controller
                 array_push($id, $rlt['id']);
             }
             array_push($id, Auth::id());
+            User::with('registration')->where('id', Auth::id())->update(['role' => $request->roleF, 'start_time' => $request->startTimeF, 'end_time' => $request->endTimeF]);
             User::with('registration')->whereIn('id', $id)->update(['registration_id' => $reg->id]);
             $dCar = json_decode($car, true);
             if ($dCar != []) {

@@ -9,7 +9,7 @@ class RegistrationGroup extends Model
 {
     protected $table = 'registration_groups';
 
-    protected $fillable = ['number_days'];
+    protected $fillable = ['start_day', 'end_day'];
 
     public function user()
     {
