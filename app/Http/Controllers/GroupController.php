@@ -42,12 +42,12 @@ class GroupController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
         $user_id = Auth::id();
-        echo shell_exec('python E:\clustering\clustering.py ' . $user_id);
+        echo shell_exec('python ' . public_path("assets\clustering\clustering.py") .' ' . $user_id);
         return response()->json(['success' => true]);
     }
 
