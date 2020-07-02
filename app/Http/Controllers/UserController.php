@@ -80,7 +80,7 @@ class UserController extends Controller
             return redirect('/login')->with('message', 'success');
         } catch (\Exception $e) {
             DB::rollBack();
-            return response()->json(['error' => 'server_error'], 500);
+            return response()->json($e);
         }
     }
 

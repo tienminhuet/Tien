@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row page-titles">
                 <div class="col-md-5 col-8 align-self-center">
-                    <h3 class="text-themecolor">Trang chủ</h3>
+                    {{--                    <h3 class="text-themecolor">Trang chủ</h3>--}}
                 </div>
             </div>
             @if(session('error'))
@@ -20,17 +20,77 @@
                             <div class="card-block">
                                 <div class="card-body text">
                                     <div class="card-header">
-                                        <button class="btn btn-primary" data-toggle="modal" data-target="#generalReg">
+                                        <button style="background-color: #4aa0e6" class="btn btn-primary" data-toggle="modal" data-target="#generalReg">
                                             Đăng
                                             ký đi chung
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                            {{--dia chi Nhà--}}
+                            <div class="card-block">
+                                <div class="card-body text">
+                                    <div class="card-header text-tab">
+                                        <span style="color: #4aa0e6; width: auto" class="fa fa-briefcase"></span>
+                                        <span style="text-align: center">Địa chỉ nhà : </span>
+                                        <div> {{ Auth::user()->home_address }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            {{--dia chi cong ty--}}
+                            <div class="card-block">
+                                <div class="card-body text">
+                                    <div class="card-header text-tab">
+                                        <span style="color: #4aa0e6; width: auto" class="fa fa-briefcase"></span>
+                                        <span style="text-align: center">Địa chỉ Công Ty : </span>
+                                        <div> {{ Auth::user()->company_address }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{--                    slide bar--}}
+                            <div id="demo" class="carousel slide" style="margin-left: 18px;" data-ride="carousel">
+                                <ul class="carousel-indicators">
+                                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                    <li data-target="#demo" data-slide-to="1"></li>
+                                    <li data-target="#demo" data-slide-to="2"></li>
+                                </ul>
+                                <div class="carousel-inner">
+                                    <di class="carousel-item active">
+                                        <img src="{{ asset('images/uet.jpg') }}" alt="Los Angeles">
+                                        <div class="carousel-caption">
+                                            <h3>UET share</h3>
+                                            <p>Giải pháp tối ưu phương tiện giao thông </p>
+                                        </div>
+                                    </di>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('images/together.jpg') }}" alt="Chicago">
+                                        <div class="carousel-caption">
+                                            <h3>Gắn kết bạn bè , đồng nghiệp</h3>
+                                            <p>Tạo ra các mối quan hệ xã hội thân thiết, thoải mái</p>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ asset('images/saving.jpg') }}" alt="New York">
+                                        <div class="carousel-caption">
+                                            <h3>giảm thiểu chi phi</h3>
+                                            <p>Giảm đáng kể chi phí đi lại, bảo trì,....</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                    <span class="carousel-control-prev-icon"></span>
+                                </a>
+                                <a class="carousel-control-next" href="#demo" data-slide="next">
+                                    <span class="carousel-control-next-icon"></span>
+                                </a>
+                            </div>
                         @else
+                            {{--                            {{dd($dData)}}--}}
                             <table class="table table-striped table-bordered">
                                 <thead>
-                                <tr>
+                                <tr  style="background-color:  #4aa0e6; color: white">
                                     <th scope="col">Tên</th>
                                     <th scope="col">Địa chỉ</th>
                                     <th scope="col">Nhóm</th>
@@ -38,23 +98,29 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($data as $dt)
+                                <tr>
+                                    <td>{{ $dData[0]['name'] }}</td>
+                                    <td>{{ $dData[0]['home_address'] }}</td>
+                                    <td>{{ $dData[0]['registration_id'] }}</td>
+                                    <td>
+                                        <button class="btn btn-primary" data-toggle="modal" data-target="#carDetail"><i
+                                                class="fa fa-info"></i></button>
+                                    </td>
+                                </tr>
+                                @for($i=1; $i<count($dData); $i++)
                                     <tr>
-                                        <td>{{$dt->name}}</td>
-                                        <td>{{$dt->home_address}}</td>
-                                        <td>{{$dt->registration->id}}</td>
-                                        <td>@if($dt->id == $driver)
-                                                <button class="btn btn-primary" data-toggle="modal"
-                                                        data-target="#carDetail"><i class="fa fa-info"></i>
-                                                </button> @endif</td>
+                                        <td>{{ $dData[$i]['name'] }}</td>
+                                        <td>{{ $dData[$i]['home_address'] }}</td>
+                                        <td>{{ $dData[$i]['registration_id'] }}</td>
+                                        <td></td>
                                     </tr>
-                                @endforeach
+                                @endfor
                                 </tbody>
                             </table>
                             <div class="route" id="style-3">
                                 <table class="table table-striped table-bordered">
                                     <thead>
-                                    <tr>
+                                    <tr  style="background-color:  #4aa0e6; color: white">
                                         <th scope="col">STT</th>
                                         <th scope="col">Tên</th>
                                         <th scope="col">Giờ đi</th>
@@ -65,14 +131,18 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Lái xe {{ $dData[0]['name'] }}</td>
-                                        <td>Trong khoảng {{ explode(':', $dData[0]['start_time'])[0] . ':'. explode(':', $dData[0]['start_time'])[1] }} - {{ explode(':', $dData[0]['end_time'])[0] . ':'. explode(':', $dData[0]['end_time'])[1] }}</td>
+                                        <td>Trong
+                                            khoảng {{ explode(':', $dData[0]['start_time'])[0] . ':'. explode(':', $dData[0]['start_time'])[1] }}
+                                            - {{ explode(':', $dData[0]['end_time'])[0] . ':'. explode(':', $dData[0]['end_time'])[1] }}</td>
                                         <td>{{$dData[0]['home_address']}}</td>
                                     </tr>
-                                    @for($i=2; $i<count($dData); $i++)
+                                    @for($i=1; $i<count($dData); $i++)
                                         <tr>
-                                            <td>{{ $i }}</td>
+                                            <td>{{ $i + 1 }}</td>
                                             <td>{{ $dData[$i]['name'] }}</td>
-                                            <td>Trong khoảng {{ explode(':', $dData[$i]['start_time'])[0] . ':'. explode(':', $dData[$i]['start_time'])[1] }} - {{ explode(':', $dData[$i]['end_time'])[0] . ':'. explode(':', $dData[$i]['end_time'])[1] }}</td>
+                                            <td>Trong
+                                                khoảng {{ explode(':', $dData[$i]['start_time'])[0] . ':'. explode(':', $dData[$i]['start_time'])[1] }}
+                                                - {{ explode(':', $dData[$i]['end_time'])[0] . ':'. explode(':', $dData[$i]['end_time'])[1] }}</td>
                                             <td>{{$dData[$i]['home_address']}}</td>
                                         </tr>
                                     @endfor
@@ -81,6 +151,8 @@
                             </div>
                         @endif
                     </div>
+
+
                 </div>
                 <div class="col-lg-7 col-md-7">
                     <div id="map"></div>

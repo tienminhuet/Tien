@@ -8,7 +8,7 @@
     <div class="modal-dialog">
         <div class="modal-selectRole">
             <form id="frmSelectRole">
-                <div class="modal-header">
+                <div style="background-color:  #4aa0e6; color: white" class="modal-header">
                     <h4 class="modal-title">
                         Cho chúng tôi biết vai trò bạn muốn đăng ký
                     </h4>

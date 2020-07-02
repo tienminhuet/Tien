@@ -3,7 +3,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="frmLeaveGroup" method="POST" action="{{ url('/leaveGroup') }}">
-                <div class="modal-header">
+                <div style="background-color:  #4aa0e6; color: white" class="modal-header">
                     <h4 class="modal-title" id="delete-title" name="title">
                         Rời nhóm
                     </h4>

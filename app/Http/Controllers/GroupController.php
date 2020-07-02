@@ -47,7 +47,7 @@ class GroupController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::id();
-        echo shell_exec('python E:\documents\clustering\clustering.py ' . $user_id);
+        echo shell_exec('python E:\clustering\clustering.py ' . $user_id);
         return response()->json(['success' => true]);
     }
 

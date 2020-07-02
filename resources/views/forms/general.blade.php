@@ -3,7 +3,7 @@
         <div class="modal-content">
             <form id="frmGeneralReg" method="POST" action="{{ url('/regGroup') }}">
                 {{ csrf_field() }}
-                <div class="modal-header">
+                <div style="background-color:  #4aa0e6; color: white" class="modal-header">
                     <h4 class="modal-title">
                         Đăng ký đi chung
                     </h4>
@@ -39,7 +39,7 @@
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="roleF" id="renterF" value="0" checked>
                             <label class="form-check-label" for="renterF">
-                                Người thuê
+                                Hành khách
                             </label>
                         </div>
                         <div class="form-check">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <label>
-                            Giới tính
+                            Giới tính đi người đi chung
                         </label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="genderF" id="maleF" value="0" checked>

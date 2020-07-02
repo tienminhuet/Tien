@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <form id="frmCarDetail">
-                <div class="modal-header">
+                <div style="background-color:  #4aa0e6; color: white" class="modal-header">
                     <h4 class="modal-title">
                         Thông tin xe
                     </h4>

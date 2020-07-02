@@ -97,10 +97,19 @@
         #timeTitle {
             padding-left: 15px;
         }
+
+
+         .carousel-inner img {
+             width: 500px;
+             height: 275px;
+         }
+
     </style>
 </head>
 <body>
+
 <div id="app">
+
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
         @if (Auth::user() && Auth::user()->super_user != 1)
             {{--            <a class="navbar-brand" href="{{ url('/home') }}">--}}
@@ -112,39 +121,47 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class=" row collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
-                    <li class="nav-item">
-                        <a id="home" class="nav-link text-tab" href="{{ route('home') }}">Home</a>
+            <div class="row">
+                <ul class="navbar-nav mr-auto" style="
+                    padding-top: 150px;">
+                    {{--                    <img src="{{ asset('images/uetshare.png') }}" class="img align-items-md-baseline"  width="150" height="120px" alt="...">--}}
+                    <li class="nav-item"  >
+                        <a style="width: 90px; margin-top: 25px; margin-left: 30px"  id="home" class="nav-link text-tab" href="{{ route('home') }}">Trang Chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a id="profile" class="nav-link text-tab" href="{{ route('profile') }}">Profile</a>
+                        <a style="width: 140px; margin-top: 25px; margin-left: 20px" id="profile" class="nav-link text-tab" href="{{ route('profile') }}">Thông tin cá nhân</a>
                     </li>
 
                 </ul>
+            </div>
+
                 @elseif (Auth::user() && Auth::user()->super_user == 1)
                     <ul class="navbar-nav mr-auto">
 
                         <li class="nav-item">
-                            <a id="userList" class="nav-link text-tab" href="{{ 'admin/user' }}">User list</a>
+                            <a id="userList" class="nav-link text-tab" href="{{ 'admin/user' }}">Danh sách người dùng</a>
                         </li>
                         <li class="nav-item">
-                            <a id="groupList" class="nav-link text-tab" href="{{ 'admin/group' }}">Group list</a>
+                            <a id="groupList" class="nav-link text-tab" href="{{ 'admin/group' }}">Danh sách nhóm</a>
                         </li>
                     </ul>
             @endif
             <!-- Right Side Of Navbar -->
+              <img src="{{ asset('images/uetshare.png') }}" class=""  width="150" height="120px" alt="...">
+                    <h2 style="margin-left: 40px"><b >Hệ thống đi chung xe</b></h2>
+
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
                             </li>
                         @endif
                     @else
@@ -154,15 +171,12 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <div style="border-color: #4aa0e6" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}">
-                                    {{ __('Logout') }}
+                                    {{ __('Đăng Xuất') }}
                                 </a>
 
-                                {{--                            <form id="logout-form" action="{{ route('logout') }}" method="POST"--}}
-                                {{--                                  style="display: none;">--}}
-                                {{--                                @csrf--}}
-                                {{--                            </form>--}}
+
                             </div>
                         </li>
                     @endguest

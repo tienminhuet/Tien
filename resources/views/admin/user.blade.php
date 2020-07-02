@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="col-lg-12 col-md-5">
                     <div class="card">
-                        <table class="table table-bordered table-dark">
+                        <table style="background-color: white; color: #1b1e21" class="table table-bordered table-dark">
                             <thead>
-                            <tr>
+                            <tr style="background-color: #4aa0e6; color: white;text-align: center">
                                 <td scope="col">Id</td>
                                 <td scope="col">Tên</td>
                                 <td scope="col">Địa chỉ email</td>
